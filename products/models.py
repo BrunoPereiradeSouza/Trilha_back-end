@@ -13,6 +13,9 @@ class Product(models.Model):
     description = models.TextField()
     price = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    cover = models.ImageField()
+    quantity_stocked = models.IntegerField()
+    cover = models.ImageField(upload_to='products/covers/%Y/%m/%d/',
+                              blank=True, default=''
+                              )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
