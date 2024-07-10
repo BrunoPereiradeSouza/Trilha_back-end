@@ -9,6 +9,7 @@
     
     {% for product in products %}
         <ul>
+            <li><img src="{{product.cover.url}}" alt="Fone de Ouvido"></li>
             <li>{{product.name}}</li>
             <li>{{product.description}}</li>
             <li>{{product.price}}</li>

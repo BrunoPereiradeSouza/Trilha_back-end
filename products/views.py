@@ -3,6 +3,23 @@ from .models import Product
 from .forms import ProductForm
 
 
+def ProductCreateView(request):
+    if request.method == 'GET':
+        form = ProductForm()
+
+    elif request.method == 'POST':
+        form = ProductForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'products/form.html',
+                  context={
+                      'form': form
+                  }
+                  )
+
+
 def ProductListView(request):
     products = Product.objects.all()
     return render(request, 'products/index.html',
@@ -16,7 +33,7 @@ def ProductUpdateView(request, id):
     if request.method == 'GET':
         form = ProductForm(instance=product)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
 
         if form.is_valid():
