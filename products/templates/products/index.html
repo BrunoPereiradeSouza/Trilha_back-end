@@ -14,6 +14,7 @@
             <li>{{product.price}}</li>
             <li>{{product.category}}</li>
             <li>{{product.quantity_stocked}}</li>
+            <a href="{% url 'deletar' id=product.id %}"><button>deletar</button></a>
         </ul>    
     {% endfor %}
 
