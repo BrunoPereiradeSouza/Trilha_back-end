@@ -1,0 +1,105 @@
+/* general */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.main {
+    padding: 2.5rem 0;
+    width: 100%;
+    background-color: rgb(46, 39, 39);
+}
+
+/* navbar */
+
+ul {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    gap: 8rem;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: all 300ms ease-in-out;
+}
+
+a:hover {
+    color: rgb(136, 104, 167);
+}
+
+/* content */
+
+.content {
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    place-items: center;
+    text-align: center;
+}
+
+.item {     
+    color: black;   
+    width: 60%;
+    background-color: white;
+    border: 0.2rem solid black;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+    border-radius: 0.5em;
+}
+
+.item img {
+    width: 80%;
+}
+
+.product_title {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.product_price {
+    font-size: 2.2rem;
+    padding: 1rem 0;
+}
+
+/* Footer */
+
+.footer {
+    padding: 2.5rem 0;
+    width: 100%;
+    background-color: rgb(46, 39, 39);
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+}
+
+.logo {
+    margin-bottom: 4rem;
+}
+
+.social_medias li {
+    font-size: 2rem;
+}
+
+.social_medias ul {
+    gap: 2rem;
+}
+
+.copywriter {
+    text-align: center;
+    background-color: rgb(46, 39, 39);
+    color: white;
+}
