@@ -13,7 +13,7 @@ def ProductCreateView(request):
         if form.is_valid():
             form.save()
 
-    return render(request, 'products/form.html',
+    return render(request, 'products/pages/form.html',
                   context={
                       'form': form
                   }
@@ -22,7 +22,7 @@ def ProductCreateView(request):
 
 def ProductListView(request):
     products = Product.objects.all()
-    return render(request, 'products/index.html',
+    return render(request, 'products/pages/index.html',
                   context={'products': products}
                   )
 
@@ -40,7 +40,7 @@ def ProductUpdateView(request, id):
             form.save()
             return redirect('index')
 
-    return render(request, 'products/form.html',
+    return render(request, 'products/pages/form.html',
                   context={
                       'form': form
                   }
@@ -51,3 +51,12 @@ def ProductDeleteView(request, id):
     product = get_object_or_404(Product, id=id)
     product.delete()
     return redirect('index')
+
+
+def ProductDetailView(request, id):
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'products/pages/product-detail.html',
+                  context={
+                      'product': product,
+                    }
+                  )

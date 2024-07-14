@@ -1,0 +1,14 @@
+{% extends 'global/base.html' %}
+
+
+{% block content %}
+    
+    {% for product in products %}
+        <div class="item">
+            {% include 'products/partials/product.html' %}
+        </div>
+    {% endfor %}
+        
+{% endblock content %}
+    
+        
