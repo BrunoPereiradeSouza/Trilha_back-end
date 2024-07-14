@@ -133,3 +133,8 @@ a {
     background-color: rgb(46, 39, 39);
     color: white;
 }
+
+/* Form */
+.content-form {
+    width: 60%;
+}

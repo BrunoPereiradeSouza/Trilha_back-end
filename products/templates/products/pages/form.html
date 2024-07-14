@@ -1,15 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">enviar</button>
+{% extends 'global/base.html' %}
+
+{% block content %}
+  <div class="content-form">
+    <form class="row g-3" method="post">
+      {% csrf_token %}
+        <div class="col-md-6">
+            <label for="inputName4" class="form-label">Name</label>
+            <p type="text" class="form-control" id="inputName4">
+                {{ form.name }}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <label for="inputDescription4" class="form-label">Price $</label>
+            <p type="Integer" class="form-control" id="inputPrice">
+                {{ form.price }}
+            </p>
+        </div>
+        <div class="col-12">
+            <label for="inputDescription" class="form-label">Description</label>
+            <p type="text" class="form-control" id="inputDescription">
+                {{ form.description}}
+            </p>
+        </div>
+        <div class="col-12">
+            <label for="inputQuantityStocked" class="form-label">Quantity Stocked</label>
+            <p type="Integer" class="form-control" id="inputQuantityStocked">
+                {{ form.quantity_stocked }}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <label for="inputCategory" class="form-label">Category</label>
+            <p type="select" class="form-control" id="inputSelect">
+                {{ form.category }}
+            </p>
+        </div>
+        <div class="col-md-4">
+            <label for="inputCover" class="form-label">Cover</label>
+            <p type="file" class="form-control" id="inputCover">
+                {{ form.cover }}
+            </p>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
     </form>
-</body>
-</html>
+  </div>
+{% endblock content %}
