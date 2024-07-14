@@ -1,60 +1,17 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'global/css/global-styles.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title> {% block title %} {% endblock title %} </title>
-</head>
+{% include 'global/partials/head.html' %}
 
 <body>
 
-    <div class="main">
-        <ul>
-            <li><a class="logo" href="{% url 'index' %}"><img src="#" alt="logo"></a></li>
-            <li><a class="nav-links" href="#">products</a></li>
-            <li><a class="nav-links" href="#">about us</a></li>
-            <li><a class="nav-links" href="#">login</a></li>
-            <li><a class="nav-links" href="#">register</a></li>
-        </ul>
-    </div>
+    {% include 'global/partials/header.html' %}
 
     <div class="content">
-        
-        {% block content %}
-            
-        {% endblock content %}
-            
-
+        {% block content %}{% endblock content %}
     </div>
 
-    <div class="footer">
-        <div class="logo">
-            <img src="#" alt="logo">
-        </div>
-        <div class="contato">
-            FONE: (99) 99999-9999
-        </div>
-        <div class="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </div>
-        <div class="social_medias">
-            <ul>
-                <li><a href="#"></a><i class="fa-brands fa-instagram"></i></li>
-                <li><a href="#"></a><i class="fa-brands fa-facebook"></i></li>
-                <li><a href="#"></a><i class="fa-brands fa-x-twitter"></i></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="copywriter">
-        Todos os direitos reservados
-    </div>
+    {% include 'global/partials/footer.html' %}
 
 </body>
 
