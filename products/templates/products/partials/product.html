@@ -1,10 +1,14 @@
-    <a href="{% url 'product' id=product.id %}">
-        <p class="product_title">{{ product.name }}</p>
-        {% if product.cover.url != '' %}
-            <img class="item-img" src="{{ product.cover.url }}" alt="product image">
-        {% endif %}
-        <p class="product_price">$ {{ product.price }}</p>
-        <p class="title_description">Description:</p>
-        <p>{{ product.description }}.</p>
-        <p class="product_available">Available - {{ product.quantity_stocked }} unit</p>
-    </a>
+<a href="{% url 'product' id=product.id %}">
+    <p class="product_title">{{ product.name }}</p>
+    {% if product.cover.url != '' %}
+    <img class="item-img" src="{{ product.cover.url }}" alt="product image">
+    {% endif %}
+    <p class="product_price">$ {{ product.price }}</p>
+    <p class="title_description">Description:</p>
+    <p>{{ product.description }}.</p>
+    <p class="product_available">Available - {{ product.quantity_stocked }} unit</p>
+    <div class="links-edit">
+        <a class="product_edit" href="{% url 'update' id=product.id %}">Edit</i></a>
+        <a  class="product_delete" href="{% url 'delete' id=product.id %}"><i class="fa-solid fa-trash"></i></a>
+    </div>
+</a>

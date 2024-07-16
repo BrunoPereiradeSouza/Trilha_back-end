@@ -135,6 +135,25 @@ ul {
     border-radius: 5px;
 }
 
+.product_edit {
+    padding: 0.5rem 1.3rem;
+    background: orange;
+    margin-right: 0.5rem;
+    border-radius: 8px;
+}
+
+.product_delete {
+    padding: 0.5rem 1.3rem;
+    background: rgb(197, 10, 10);
+    color: white;
+    margin-left: 0.5rem;
+    border-radius: 8px;
+}
+
+.links-edit {
+    margin-top: 2rem;
+}
+
 a {
     text-decoration: none;
     color: black;
