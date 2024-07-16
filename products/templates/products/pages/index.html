@@ -1,8 +1,11 @@
 {% extends 'global/base.html' %}
 
 
+{% block message %}
+    {% include 'global/partials/messages.html' %}
+{% endblock message %}
+
 {% block content %}
-    
     {% for product in products %}
         <div class="item">
             {% include 'products/partials/product.html' %}
@@ -10,5 +13,3 @@
     {% endfor %}
         
 {% endblock content %}
-    
-        

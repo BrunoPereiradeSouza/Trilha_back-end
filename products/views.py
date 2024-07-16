@@ -1,21 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from .models import Product
 from .forms import ProductForm
 
 
 def ProductCreateView(request):
     if request.method == 'GET':
-        form = ProductForm()
+        form = ProductForm(request.FILES)
 
     elif request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Product was created')
+            return redirect('index')
 
     return render(request, 'products/pages/form.html',
                   context={
-                      'form': form
+                      'form': form,
                   }
                   )
 
@@ -38,6 +41,7 @@ def ProductUpdateView(request, id):
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Product was updated')
             return redirect('index')
 
     return render(request, 'products/pages/form.html',
@@ -50,6 +54,7 @@ def ProductUpdateView(request, id):
 def ProductDeleteView(request, id):
     product = get_object_or_404(Product, id=id)
     product.delete()
+    messages.success(request, 'Product was deleted')
     return redirect('index')
 
 

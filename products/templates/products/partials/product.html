@@ -1,6 +1,10 @@
     <a href="{% url 'product' id=product.id %}">
         <p class="product_title">{{ product.name }}</p>
-        <img class="item-img" src="{{ product.cover.url }}" alt="product image">
+        {% if product.cover.url != '' %}
+            <img class="item-img" src="{{ product.cover.url }}" alt="product image">
+        {% endif %}
         <p class="product_price">$ {{ product.price }}</p>
+        <p class="title_description">Description:</p>
         <p>{{ product.description }}.</p>
+        <p class="product_available">Available - {{ product.quantity_stocked }} unit</p>
     </a>
