@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from rolepermissions.roles import assign_role
+from rolepermissions.decorators import has_role_decorator
+from django.contrib.auth.models import User
 from .models import Product
-from .forms import ProductForm
+from .forms import ProductForm, UserForm
 
 
 def ProductCreateView(request):
@@ -65,3 +68,31 @@ def ProductDetailView(request, id):
                       'product': product,
                     }
                   )
+
+
+def UserCreateView(request):
+    if request.method == 'GET':
+        form = UserForm()
+    elif request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            first_name = form.data.get('first_name')
+            last_name = form.data.get('last_name')
+            username = form.data.get('username')
+            email = form.data.get('email')
+            password = form.data.get('password')
+
+            user = User.objects.create_user(
+                first_name=first_name,
+                last_name=last_name,
+                username=username,
+                password=password,
+                email=email,
+                )
+            assign_role(user, 'client')
+            user.save()
+
+    return render(request, 'products/pages/form-client.html',
+                  context={
+                      'form': form,
+                  })

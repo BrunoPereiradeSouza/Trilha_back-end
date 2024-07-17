@@ -1,0 +1,42 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+  <div class="content-form">
+    <form class="row g-3" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="col-md-6">
+            <label for="inputFirstName4" class="form-label">First Name</label>
+            <p type="text" class="form-control" id="inputFirstName4">
+                {{ form.first_name }}
+            </p>
+        </div>
+        <div class="col-md-6">
+            <label for="inputLastName4" class="form-label">Last Name</label>
+            <p type="text" class="form-control" id="inputLastName">
+                {{ form.last_name }}
+            </p>
+        </div>
+        <div class="col-12">
+            <label for="inputUsername" class="form-label">Username</label>
+            <p type="text" class="form-control" id="inputUsername">
+                {{ form.username}}
+            </p>
+        </div>
+        <div class="col-12">
+            <label for="inputemail" class="form-label">E-mail</label>
+            <p type="email" class="form-control" id="inputEmail">
+                {{ form.email }}
+            </p>
+        </div>
+        <div class="col-md-12">
+            <label for="inputPassword" class="form-label">Password</label>
+            <p type="password" class="form-control" id="inputPassword">
+                {{ form.password }}
+            </p>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+  </div>
+{% endblock content %}

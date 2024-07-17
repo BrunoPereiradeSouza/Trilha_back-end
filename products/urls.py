@@ -8,4 +8,5 @@ urlpatterns = [
     path('product/create/', views.ProductCreateView, name='create'),
     path('product/update/<int:id>/', views.ProductUpdateView, name='update'),
     path('product/delete/<int:id>/', views.ProductDeleteView, name='delete'),
+    path('clients/register/', views.UserCreateView, name='register'),
 ]
