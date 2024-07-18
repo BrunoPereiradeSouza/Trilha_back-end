@@ -2,11 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from rolepermissions.roles import assign_role
 from rolepermissions.decorators import has_role_decorator
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Product
 from .forms import ProductForm, UserForm
 
 
+@has_role_decorator('Admin')
 def ProductCreateView(request):
     if request.method == 'GET':
         form = ProductForm(request.FILES)
@@ -33,6 +36,7 @@ def ProductListView(request):
                   )
 
 
+@has_role_decorator('Admin')
 def ProductUpdateView(request, id):
     product = get_object_or_404(Product, id=id)
 
@@ -54,6 +58,7 @@ def ProductUpdateView(request, id):
                   )
 
 
+@has_role_decorator('Admin')
 def ProductDeleteView(request, id):
     product = get_object_or_404(Product, id=id)
     product.delete()
@@ -70,7 +75,7 @@ def ProductDetailView(request, id):
                   )
 
 
-def UserCreateView(request):
+def UserRegisterView(request):
     if request.method == 'GET':
         form = UserForm()
     elif request.method == 'POST':
@@ -91,8 +96,35 @@ def UserCreateView(request):
                 )
             assign_role(user, 'client')
             user.save()
+            form = UserForm()
+            return redirect('login')
 
-    return render(request, 'products/pages/form-client.html',
+    return render(request, 'products/pages/register.html',
                   context={
                       'form': form,
                   })
+
+
+def UserLoginView(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            login(request, user)
+            messages.success(request, 'Sucessfully login!')
+            return redirect('index')
+        else:
+            messages.error(request, 'Invalid User or Password!')
+            return redirect('login')
+    else:
+        return render(request, 'products/pages/login.html')
+
+
+@login_required(login_url='login')
+def UserLogoutView(request):
+    logout(request)
+    messages.success(request, 'you are logged out')
+    return redirect('login')

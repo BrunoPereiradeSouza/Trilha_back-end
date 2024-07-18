@@ -197,6 +197,15 @@ a {
     background: rgb(223, 220, 220);
 }
 
+.content-form-login {
+    width: 40%;
+    margin: 10rem 0;
+    padding: 2rem;
+    border-radius: 5px;
+    background: rgb(223, 220, 220);
+}
+
+
 /* Messages */
 .messages-container {
     display: flex;

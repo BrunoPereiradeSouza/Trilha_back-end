@@ -1,0 +1,26 @@
+{% extends 'global/base.html' %}
+
+
+{% block message %}
+    {% include 'global/partials/messages.html' %}
+{% endblock message %}
+    
+
+{% block content %}
+<div class="content-form-login">
+    <form class="row g-3" enctype="multipart/form-data" method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="col-md-12">
+          <label for="inputUsername" class="form-label">Username</label>
+          <input type="text" class="form-control" id="inputUsername" name="username">
+        </div>
+        <div class="col-md-12">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword4" name="password">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
