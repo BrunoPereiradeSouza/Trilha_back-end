@@ -5,7 +5,7 @@ from rolepermissions.decorators import has_role_decorator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Product
+from .models import Product, Sale
 from .forms import ProductForm, UserForm
 
 
@@ -73,6 +73,23 @@ def ProductDetailView(request, id):
                       'product': product,
                     }
                   )
+
+
+@login_required(login_url='login')
+def ProductBuyView(request, id):
+    product = Product.objects.get(id=id)
+    product.quantity_stocked -= 1
+    product.save()
+
+    sale = Sale.objects.create(
+        product_name=product.name,
+        product_price=product.price,
+        client_name=request.user.username,
+        )
+    sale.save()
+
+    messages.success(request, 'Purchase was sucessfull')
+    return redirect('index')
 
 
 def UserRegisterView(request):

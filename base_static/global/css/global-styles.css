@@ -150,6 +150,17 @@ ul {
     border-radius: 8px;
 }
 
+.sale {
+    margin: 2rem;
+}
+
+.product_buy{
+    padding: 0.7rem 2rem; 
+    border-radius: 5px;
+    background: rgb(155, 110, 26);
+}
+
+
 .links-edit {
     margin-top: 2rem;
 }
