@@ -54,7 +54,7 @@ def ProductUpdateView(request, id):
         form = ProductForm(instance=product)
 
     elif request.method == 'POST':
-        form = ProductForm(request.POST, instance=product)
+        form = ProductForm(request.POST, request.FILES, instance=product)
 
         if form.is_valid():
             form.save()
