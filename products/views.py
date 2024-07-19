@@ -30,9 +30,19 @@ def ProductCreateView(request):
 
 
 def ProductListView(request):
+    sales = Sale.objects.all()
+    total, billing = 0, 0
+    for sale in sales:
+        total += 1
+        billing += sale.product_price
+    billing = f'{billing:.2f}'
     products = Product.objects.all()
     return render(request, 'products/pages/index.html',
-                  context={'products': products}
+                  context={
+                      'products': products,
+                      'total': total,
+                      'billing': billing,
+                      }
                   )
 
 

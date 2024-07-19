@@ -1,13 +1,14 @@
+{% load static %}
 <div class="header">
     <ul>
-        <li><a class="logo" href="{% url 'index' %}"><img src="#" alt="logo"></a></li>
-        <li><a class="nav-links" href="#">about us</a></li>
-        <li><a class="nav-links" href="#">products</a></li>
+        <li><a class="logo" href="{% url 'index' %}"><img src="{% static 'global/img/logo.png' %}" alt="logo"></a></li>
+        <li class="li-links"><a class="nav-links" href="#">about us</a></li>
+        <li class="li-links"><a class="nav-links" href="#">products</a></li>
         {% if user.is_authenticated %}
-            <li><a class="nav-links" href="{% url 'logout' %}">logout</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'logout' %}">logout</a></li>
         {% else %}
-            <li><a class="nav-links" href="{% url 'login' %}">login</a></li>
-            <li><a class="nav-links" href="{% url 'register' %}">register</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'login' %}">login</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'register' %}">register</a></li>
         {% endif %}
     </ul>
 </div>

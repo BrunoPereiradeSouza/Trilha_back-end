@@ -1,15 +1,28 @@
 {% extends 'global/base.html' %}
 
+{% block permissions %}
+    {% load permission_tags %}
+{% endblock permissions %}
 
 {% block message %}
     {% include 'global/partials/messages.html' %}
 {% endblock message %}
 
-{% block content %}
-    {% for product in products %}
-        <div class="item">
-            {% include 'products/partials/product.html' %}
+{% block billing %}
+    {% if user|has_role:'Admin' and total >= 1 %}
+        <div class="sales_panel">
+            <p>Sales Numbers = {{ total }}</p>
+            <p>Total billing = $ {{ billing }}</p>
         </div>
-    {% endfor %}
-        
+    {% endif %}
+{% endblock billing %}
+
+{% block content %}
+
+{% for product in products %}
+<div class="item">
+    {% include 'products/partials/product.html' %}
+</div>
+{% endfor %}
+
 {% endblock content %}
