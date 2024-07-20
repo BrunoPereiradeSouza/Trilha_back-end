@@ -1,5 +1,6 @@
 /* vars */
 :root {
+    --font: @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
     --color-dark-text: #444;
     --color-info-light: #cce5ff;
     --color-debug-light: #cce5ff;
@@ -27,7 +28,7 @@
 }
 
 body {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: var(--font);
 }
 
 
