@@ -5,8 +5,8 @@ from rolepermissions.decorators import has_role_decorator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Product, Sale
-from .forms import ProductForm, UserForm
+from products.models import Product, Sale
+from products.forms import ProductForm, UserForm
 
 
 @has_role_decorator('Admin')
