@@ -1,10 +1,8 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 from products.models import Product
 from products.serializers import ProductSerializer
 
-@api_view()
-def ProductListApiView(request):
-    products = Product.objects.all()
-    serializer = ProductSerializer(instance=products, many=True)
-    return Response(serializer.data)
+
+class ProductApiViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

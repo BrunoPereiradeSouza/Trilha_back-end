@@ -1,7 +1,10 @@
 from rest_framework import serializers
+from products.models import Product
 
 
-class ProductSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    name = serializers.CharField(max_length=65)
-    description = serializers.CharField(max_length=165)
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'price', 'description', 'category', 'quantity_stocked']
+
+        category = serializers.StringRelatedField()
