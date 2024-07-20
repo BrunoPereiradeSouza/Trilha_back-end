@@ -3,6 +3,7 @@ from .models import Product
 from django.contrib.auth.models import User
 
 
+# Form para criar e editar Produtos.
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -20,6 +21,7 @@ class ProductForm(forms.ModelForm):
         }
 
 
+# Form para criar Usuários e fazer login.
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
