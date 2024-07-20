@@ -4,13 +4,15 @@ from rest_framework.routers import SimpleRouter
 
 
 # Cria um router
-product_api_router = SimpleRouter()  
+product_api_router = SimpleRouter()
 
 # Registra o router
-product_api_router.register('products', views.ProductApiViewSet)
+product_api_router.register("products", views.ProductApiViewSet)
 
 urlpatterns = [
-    path('client/register/', views.UserApiRegister.as_view(), name='client_api_register'),
+    path(
+        "client/register/", views.UserApiRegister.as_view(), name="client_api_register"
+    ),
 ]
 
 # Adiciona o router nas urlpatterns
