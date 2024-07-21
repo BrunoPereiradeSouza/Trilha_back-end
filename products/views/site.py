@@ -1,12 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from rolepermissions.roles import assign_role
-from rolepermissions.decorators import has_role_decorator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from products.models import Product, Sale
+from django.shortcuts import get_object_or_404, redirect, render
+from rolepermissions.decorators import has_role_decorator
+from rolepermissions.roles import assign_role
+
 from products.forms import ProductForm, UserForm
+from products.models import Product, Sale
 
 
 @has_role_decorator("Admin")  # Define o(s) grupo(s) que pode(m) acessá-la.
@@ -35,10 +36,12 @@ def ProductListView(request):  # Lista os produtos
     # Retorne o número de vendas e o faturamento total para ser exibido na home do site
     sales = Sale.objects.all()
     total, billing = 0, 0
-    for sale in sales:
-        total += 1
-        billing += sale.product_price
-    billing = f"{billing:.2f}"
+
+    if sales.count() > 0:
+        for sale in sales:
+            total += 1
+            billing += sale.product.price
+        billing = f"{billing:.2f}"
 
     # Retorna todos os produtos salvos no Banco de Dados
     products = Product.objects.all()
@@ -99,9 +102,8 @@ def ProductBuyView(request, id):
 
     # Registra a venda
     sale = Sale.objects.create(
-        product_name=product.name,
-        product_price=product.price,
-        client_name=request.user.username,
+        product=product,
+        client=request.user,
     )
     sale.save()
 

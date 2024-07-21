@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -22,6 +23,5 @@ class Product(models.Model):
 
 
 class Sale(models.Model):
-    product_name = models.CharField(max_length=150)
-    product_price = models.FloatField()
-    client_name = models.CharField(max_length=200)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
