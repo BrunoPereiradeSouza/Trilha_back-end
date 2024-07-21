@@ -12,6 +12,7 @@ from products.models import Product, Sale
 
 PER_PAGE = 12
 
+
 @has_role_decorator("Admin")  # Define o(s) grupo(s) que pode(m) acessá-la.
 def ProductCreateView(request):
     if request.method == "GET":  # Usuário acessa o form
@@ -47,9 +48,7 @@ def ProductListView(request):  # Lista os produtos
 
     # Retorna todos os produtos salvos no Banco de Dados
     products = Product.objects.all()
-    page_obj, pagination = make_pagination(
-            products, PER_PAGE, request
-        )
+    page_obj, pagination = make_pagination(products, PER_PAGE, request)
     return render(
         request,
         "products/pages/index.html",
@@ -141,6 +140,7 @@ def UserRegisterView(request):  # Registra um Usuário
             assign_role(user, "client")
             user.save()
             form = UserForm()
+            messages.success(request, "Create user was sucessfull")
             return redirect("login")
 
     return render(

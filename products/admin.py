@@ -26,15 +26,18 @@ class SaleAdmin(admin.ModelAdmin):
 
     def product_name(self, obj):
         return obj.product.name
-    product_name.admin_order_field = 'product__name' 
-    product_name.short_description = 'Product Name'
+
+    product_name.admin_order_field = "product__name"
+    product_name.short_description = "Product Name"
 
     def product_price(self, obj):
         return obj.product.price
-    product_name.admin_order_field = 'product__price' 
-    product_name.short_description = 'Product Name'  
+
+    product_name.admin_order_field = "product__price"
+    product_name.short_description = "Product Name"
 
     def client_username(self, obj):
         return obj.client.username
-    client_username.admin_order_field = 'client__username' 
-    client_username.short_description = 'Client Username'    
+
+    client_username.admin_order_field = "client__username"
+    client_username.short_description = "Client Username"
