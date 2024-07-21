@@ -1,4 +1,5 @@
 from django.contrib import messages
+from products.utils.pagination import make_pagination
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -9,6 +10,7 @@ from rolepermissions.roles import assign_role
 from products.forms import ProductForm, UserForm
 from products.models import Product, Sale
 
+PER_PAGE = 12
 
 @has_role_decorator("Admin")  # Define o(s) grupo(s) que pode(m) acessá-la.
 def ProductCreateView(request):
@@ -45,11 +47,15 @@ def ProductListView(request):  # Lista os produtos
 
     # Retorna todos os produtos salvos no Banco de Dados
     products = Product.objects.all()
+    page_obj, pagination = make_pagination(
+            products, PER_PAGE, request
+        )
     return render(
         request,
         "products/pages/index.html",
         context={
-            "products": products,
+            "products": page_obj,
+            "pagination": pagination,
             "total": total,
             "billing": billing,
         },
