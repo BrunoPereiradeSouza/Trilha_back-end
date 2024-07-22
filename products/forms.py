@@ -1,6 +1,8 @@
 from django import forms
 from .models import Product
 from django.contrib.auth.models import User
+from products.validators import UserValidator
+from django.core.exceptions import ValidationError
 
 
 # Form para criar e editar Produtos.
@@ -69,3 +71,11 @@ class UserForm(forms.ModelForm):
                 }
             ),
         }
+    
+    def clean(self):
+        super_clean = super().clean()
+        UserValidator(
+            self.cleaned_data,
+            ErrorClass=ValidationError,
+        )
+        return super_clean

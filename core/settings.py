@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-from django.contrib.messages import constants
+from datetime import timedelta
 from pathlib import Path
+
+from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in productsion secret!
 SECRET_KEY = "django-insecure-u%fwtoij+=t^w_@!&7j$h33wjjud^rzfz4iz62(wv(9*^3^=bv"
+
+SECRET_KEY_JWT = "srg5585hgjgsap ãgrgth6-hh0sh69%5trhtrh kdvbndfi5448t994th"
 
 # SECURITY WARNING: don't run with debug turned on in productsion!
 DEBUG = True
@@ -150,4 +154,13 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "BLACKLIST_AFTER_ROTATION": False,
+
+    "SIGNING_KEY": SECRET_KEY_JWT,
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }

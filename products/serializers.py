@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from products.models import Product
 from django.contrib.auth.models import User
+from products.validators import UserValidator
 
 
 # Classe usada para Serializar e Desserializar os Produtos
@@ -17,9 +18,18 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
+            "id",
             "first_name",
             "last_name",
             "username",
             "email",
             "password",
         ]
+    
+    def validate(self, attrs):
+        super_validate = super().validate(attrs)
+        UserValidator(
+            data=attrs,
+            ErrorClass=serializers.ValidationError,
+        )
+        return super_validate
