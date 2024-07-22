@@ -1,9 +1,16 @@
 {% load static %}
+{% load permission_tags %}
 <div class="header">
     <ul>
         <li><a class="logo" href="{% url 'index' %}"><img src="{% static 'global/img/logo.png' %}" alt="logo"></a></li>
-        <li class="li-links"><a class="nav-links" href="#">about us</a></li>
-        <li class="li-links"><a class="nav-links" href="#">products</a></li>
+        <li class="li-links"><a class="nav-links" href="https://github.com/BrunoPereiradeSouza">about us</a></li>
+        
+        {% if user|has_role:'Admin' %}
+            <li class="li-links"><a class="nav-links" href="{% url 'create' %}">new products</a></li>
+        {% else %}
+            <li class="li-links"><a class="nav-links" href="{% url 'index' %}#content">products</a></li>
+        {% endif %}
+
         {% if user.is_authenticated %}
             <li class="li-links"><a class="nav-links" href="{% url 'logout' %}">logout</a></li>
         {% else %}

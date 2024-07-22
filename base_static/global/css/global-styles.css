@@ -92,7 +92,7 @@ ul {
 
 /* content */
 
-.content {
+#content {
     padding: 2rem 0 0 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -216,6 +216,10 @@ a {
 
 .social_medias ul {
     gap: 2rem;
+}
+
+.social_medias ul li a {
+    color: white;
 }
 
 .copywriter {
