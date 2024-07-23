@@ -1,8 +1,9 @@
 {% extends 'global/base.html' %}
 
-{% block permissions %}
+{% block loadings %}
     {% load permission_tags %}
-{% endblock permissions %}
+    {% load i18n %}
+{% endblock loadings %}
 
 {% block message %}
     {% include 'global/partials/messages.html' %}
@@ -11,8 +12,8 @@
 {% block billing %}
     {% if user|has_role:'Admin' and total >= 1 %}
         <div class="sales_panel">
-            <p>Sales Numbers = {{ total }}</p>
-            <p>Total billing = $ {{ billing }}</p>
+            <p>{% translate 'Sales Number' %} = {{ total }}</p>
+            <p>{% translate 'Total billing' %} = $ {{ billing }}</p>
         </div>
     {% endif %}
 {% endblock billing %}

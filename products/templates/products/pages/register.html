@@ -1,23 +1,28 @@
 {% extends 'global/base.html' %}
 
+{% block loadings %}
+    {% load i18n %}
+{% endblock loadings %}
+    
+
 {% block content %}
   <div class="content-form">
     <form class="row g-3" method="post" enctype="multipart/form-data">
       {% csrf_token %}
         <div class="col-md-6">
-            <label for="inputFirstName4" class="form-label">First Name</label>
+            <label for="inputFirstName4" class="form-label">{% translate 'First Name' %}</label>
             <p type="text" class="form-control" id="inputFirstName4">
                 {{ form.first_name }}
             </p>
         </div>
         <div class="col-md-6">
-            <label for="inputLastName4" class="form-label">Last Name</label>
+            <label for="inputLastName4" class="form-label">{% translate 'Last Name' %}</label>
             <p type="text" class="form-control" id="inputLastName">
                 {{ form.last_name }}
             </p>
         </div>
         <div class="col-12">
-            <label for="inputUsername" class="form-label">Username</label>
+            <label for="inputUsername" class="form-label">{% translate 'Username' %}</label>
             <p type="text" class="form-control" id="inputUsername">
                 {{ form.username}}
             </p>
@@ -29,13 +34,13 @@
             </p>
         </div>
         <div class="col-md-12">
-            <label for="inputPassword" class="form-label">Password</label>
+            <label for="inputPassword" class="form-label">{% translate 'Password' %}</label>
             <p type="password" class="form-control" id="inputPassword">
                 {{ form.password }}
             </p>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" class="btn btn-primary">{% translate 'Send' %}</button>
         </div>
     </form>
   </div>

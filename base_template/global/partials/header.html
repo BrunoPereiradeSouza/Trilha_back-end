@@ -1,21 +1,22 @@
 {% load static %}
 {% load permission_tags %}
+{% load i18n %}
 <div class="header">
     <ul>
         <li><a class="logo" href="{% url 'index' %}"><img src="{% static 'global/img/logo.png' %}" alt="logo"></a></li>
-        <li class="li-links"><a class="nav-links" href="https://github.com/BrunoPereiradeSouza">about us</a></li>
+        <li class="li-links"><a class="nav-links" href="https://github.com/BrunoPereiradeSouza">{% translate 'about us' %}</a></li>
         
         {% if user|has_role:'Admin' %}
-            <li class="li-links"><a class="nav-links" href="{% url 'create' %}">new products</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'create' %}">{% translate 'new product' %}</a></li>
         {% else %}
-            <li class="li-links"><a class="nav-links" href="{% url 'index' %}#content">products</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'index' %}#content">{% translate 'products' %}</a></li>
         {% endif %}
 
         {% if user.is_authenticated %}
-            <li class="li-links"><a class="nav-links" href="{% url 'logout' %}">logout</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'logout' %}">{% translate 'logout' %}</a></li>
         {% else %}
-            <li class="li-links"><a class="nav-links" href="{% url 'login' %}">login</a></li>
-            <li class="li-links"><a class="nav-links" href="{% url 'register' %}">register</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'login' %}">{% translate 'login' %}</a></li>
+            <li class="li-links"><a class="nav-links" href="{% url 'register' %}">{% translate 'register' %}</a></li>
         {% endif %}
     </ul>
 </div>

@@ -43,13 +43,13 @@ class UserForm(forms.ModelForm):
             "first_name": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Your first_name",
+                    "placeholder": "Your First Name",
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Your last_name",
+                    "placeholder": "Your last name",
                 }
             ),
             "username": forms.TextInput(

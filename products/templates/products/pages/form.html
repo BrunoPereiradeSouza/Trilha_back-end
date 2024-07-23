@@ -1,47 +1,53 @@
 {% extends 'global/base.html' %}
 
+
+{% block loadings %}
+    {% load i18n %}
+{% endblock loadings %}
+    
+
 {% block content %}
   <div class="content-form">
     <form class="row g-3" method="post" enctype="multipart/form-data">
       {% csrf_token %}
         <div class="col-md-6">
-            <label for="inputName4" class="form-label">Name</label>
+            <label for="inputName4" class="form-label">{% trans 'Name' context "form label"%}</label>
             <p type="text" class="form-control" id="inputName4">
                 {{ form.name }}
             </p>
         </div>
         <div class="col-md-6">
-            <label for="inputDescription4" class="form-label">Price $</label>
+            <label for="inputDescription4" class="form-label">{% translate 'Price' %} $</label>
             <p type="number" class="form-control" id="inputPrice">
                 {{ form.price }}
             </p>
         </div>
         <div class="col-12">
-            <label for="inputDescription" class="form-label">Description</label>
+            <label for="inputDescription" class="form-label">{% translate 'Description' %}</label>
             <p type="text" class="form-control" id="inputDescription">
                 {{ form.description}}
             </p>
         </div>
         <div class="col-12">
-            <label for="inputQuantityStocked" class="form-label">Quantity Stocked</label>
+            <label for="inputQuantityStocked" class="form-label">{% translate 'Quantity Stocked' %}</label>
             <p type="number" class="form-control" id="inputQuantityStocked">
                 {{ form.quantity_stocked }}
             </p>
         </div>
         <div class="col-md-6">
-            <label for="inputCategory" class="form-label">Category</label>
+            <label for="inputCategory" class="form-label">{% translate 'Category' %}</label>
             <p type="select" class="form-control" id="inputSelect">
                 {{ form.category }}
             </p>
         </div>
         <div class="col-md-6">
-            <label for="inputCover" class="form-label">Cover</label>
+            <label for="inputCover" class="form-label">{% translate 'Cover' %}</label>
             <p type="file" class="form-control" id="inputCover">
                 {{ form.cover }}
             </p>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" class="btn btn-primary">{% translate 'Send' %}</button>
         </div>
     </form>
   </div>

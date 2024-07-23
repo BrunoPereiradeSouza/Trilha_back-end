@@ -1,0 +1,117 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-26 20:39-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\base_template\global\partials\header.html:7
+msgid "about us"
+msgstr "sobre nós"
+
+#: .\base_template\global\partials\header.html:10
+msgid "new product"
+msgstr "novo produto"
+
+#: .\base_template\global\partials\header.html:12
+msgid "products"
+msgstr "produtos"
+
+#: .\base_template\global\partials\header.html:16
+msgid "logout"
+msgstr "sair"
+
+#: .\base_template\global\partials\header.html:18
+msgid "login"
+msgstr "entrar"
+
+#: .\base_template\global\partials\header.html:19
+msgid "register"
+msgstr "registrar-se"
+
+#: .\products\templates\products\pages\form.html:14
+msgctxt "form label"
+msgid "Name"
+msgstr "Nome"
+
+#: .\products\templates\products\pages\form.html:20
+msgid "Price"
+msgstr "Preço"
+
+#: .\products\templates\products\pages\form.html:26
+#: .\products\templates\products\partials\product.html:10
+msgid "Description"
+msgstr "Descrição"
+
+#: .\products\templates\products\pages\form.html:32
+msgid "Quantity Stocked"
+msgstr "Quantidade em estoque"
+
+#: .\products\templates\products\pages\form.html:38
+msgid "Category"
+msgstr "Categoria"
+
+#: .\products\templates\products\pages\form.html:44
+msgid "Cover"
+msgstr "Imagem"
+
+#: .\products\templates\products\pages\form.html:50
+#: .\products\templates\products\pages\login.html:27
+#: .\products\templates\products\pages\register.html:43
+msgid "Send"
+msgstr "Enviar"
+
+#: .\products\templates\products\pages\index.html:15
+msgid "Sales Number"
+msgstr "Número de Vendas"
+
+#: .\products\templates\products\pages\index.html:16
+msgid "Total billing"
+msgstr "Faturamento Total"
+
+#: .\products\templates\products\pages\login.html:19
+#: .\products\templates\products\pages\register.html:25
+msgid "Username"
+msgstr "Usuário"
+
+#: .\products\templates\products\pages\login.html:23
+#: .\products\templates\products\pages\register.html:37
+msgid "Password"
+msgstr "Senha"
+
+#: .\products\templates\products\pages\register.html:13
+msgid "First Name"
+msgstr "Primeiro Nome"
+
+#: .\products\templates\products\pages\register.html:19
+msgid "Last Name"
+msgstr "Último Nome"
+
+#: .\products\templates\products\partials\product.html:12
+msgid "Available"
+msgstr "Disponível"
+
+#: .\products\templates\products\partials\product.html:12
+msgid "unit"
+msgstr "unidades"
+
+#: .\products\templates\products\partials\product.html:17
+msgid "Edit"
+msgstr "Editar"
+
+#: .\products\templates\products\partials\product.html:21
+msgid "Buy"
+msgstr "Comprar"

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 from rolepermissions.decorators import has_role_decorator
 from rolepermissions.roles import assign_role
-
+from django.utils import translation
 from products.forms import ProductForm, UserForm
 from products.models import Product, Sale
 
@@ -49,6 +49,9 @@ def ProductListView(request):  # Lista os produtos
     # Retorna todos os produtos salvos no Banco de Dados
     products = Product.objects.all()
     page_obj, pagination = make_pagination(products, PER_PAGE, request)
+
+    html_language = translation.get_language()
+
     return render(
         request,
         "products/pages/index.html",
@@ -57,6 +60,7 @@ def ProductListView(request):  # Lista os produtos
             "pagination": pagination,
             "total": total,
             "billing": billing,
+            "html_language": html_language,
         },
     )
 
@@ -178,3 +182,11 @@ def UserLogoutView(request):  # Realiza o Logout do Usuário logado no site.
     logout(request)
     messages.success(request, "you are logged out")
     return redirect("login")
+
+
+# Função para manipular o context de todas as views
+def my_context(request):
+    html_language = translation.get_language()
+    return {
+        'html_language': html_language,
+    }
