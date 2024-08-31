@@ -1,6 +1,8 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 /* vars */
 :root {
-    --font: @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
     --color-dark-text: #444;
     --color-info-light: #cce5ff;
     --color-debug-light: #cce5ff;
@@ -47,15 +49,17 @@
 }
 
 body {
-    font-family: var(--font);
+    font-family: 'Ubuntu', sans-serif;
 }
 
 
 /* navbar */
 
 .header {
-    padding: 2.5rem 0;
+    height: 200px;
     width: 100%;
+    display: flex;
+    align-items: center;
     background-color: rgb(46, 39, 39);
     margin-bottom: 2rem;
 }
@@ -63,27 +67,57 @@ body {
 ul {
     width: 90%;
     margin: 0 auto;
-    padding: 1rem 2rem;
-    gap: 8rem;
+    gap: 25%;
     display: flex;
     list-style: none;
     justify-content: center;
+    align-items: center;
 }
 
-.header ul .li-links {
-    padding-top: 1.8rem;
+.logo-container {
+    display: flex;
+    align-items: center;
+    min-width: 124px;
 }
 
-.logo {
-    margin: 0;
+.logo-header {
+    color: white;
+    font-size: 1.7rem;
 }
 
 .nav-links {
     color: white;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition: all 300ms ease-in-out;
     margin: 0;
+}
+
+.links-center {
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+    min-width: 300px;
+}
+
+.links-center .li-links {
+    min-width: 92px;
+}
+
+.links-acoount {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    min-width: 212px;
+}
+
+
+.register {
+    padding: 0.5rem 0.8rem;
+    background: white;
+    color: black;
+    border-radius: 4px;
 }
 
 .nav-links:hover {
@@ -100,8 +134,8 @@ ul {
     text-align: center;
 }
 
-.item {     
-    color: black;   
+.item {
+    color: black;
     width: 70%;
     background-color: white;
     border: 0.2rem solid black;
@@ -117,20 +151,8 @@ ul {
     box-shadow: -.8rem .8rem 1.8rem rgba(0, 0, 0, .25);
 }
 
-.item-detail {
-    color: black;   
-    width: 60%;
-    background-color: white;
-    border: 0.2rem solid black;
-    text-align: center;
-    padding: 2rem 1rem;
-    margin: 2rem 0;
-    border-radius: 0.5em;
-    transition: all 300ms ease-in-out;
-}
-
 .item-img {
-    width: 100%;
+    width: 90%;
     height: 80%;
 }
 
@@ -141,7 +163,7 @@ ul {
 
 .product_price {
     font-size: 2.2rem;
-    padding: 1rem 0;
+    padding: 1rem 0 0.5rem 0;
 }
 
 .title_description {
@@ -151,8 +173,8 @@ ul {
 }
 
 .product_available {
-    margin-top: 2rem;
-    font-size: 1.1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
     padding: 0.5rem;
     background: #e4dcdc;
     border-radius: 5px;
@@ -177,10 +199,11 @@ ul {
     margin: 2rem;
 }
 
-.product_buy{
-    padding: 0.7rem 2rem; 
-    border-radius: 5px;
+.product-btn-detail {
+    padding: 0.5rem 30%;
+    border-radius: 0.6rem;
     background: rgb(155, 110, 26);
+    color: white;
 }
 
 
@@ -192,6 +215,54 @@ a {
     text-decoration: none;
     color: black;
 }
+
+/* Detail */
+.item-detail {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    background-color: var(--color-gray-0);
+    text-align: center;
+    border-radius: 0.5em;
+    transition: all 300ms ease-in-out;
+}
+
+.product-informations {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.product-informations p {
+    text-align: justify;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-btn {
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    color: black;
+}
+
+.color-add-cart {
+    background: rgb(253, 219, 24);
+}
+
+.color-buy {
+    background: rgb(155, 110, 26);
+}
+
 
 /* Footer */
 
@@ -206,7 +277,7 @@ a {
     margin-top: 3rem;
 }
 
-.logo {
+.logo-footer {
     margin-bottom: 4rem;
 }
 
@@ -253,47 +324,47 @@ a {
 }
 
 .message {
-padding: 1rem;
-border-radius: 4px;
-border: 1px solid var(--color-dark-text);
-background: var(--color-gray-2);
-color: var(--color-dark-text);
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-dark-text);
+    background: var(--color-gray-2);
+    color: var(--color-dark-text);
 }
 
 .message-error {
-border: 1px solid var(--color-error-dark);
-background: var(--color-error-light);
-color: var(--color-error-dark);
+    border: 1px solid var(--color-error-dark);
+    background: var(--color-error-light);
+    color: var(--color-error-dark);
 }
 
 .message-success {
-border: 1px solid var(--color-success-dark);
-background: var(--color-success-light);
-color: var(--color-success-dark);
+    border: 1px solid var(--color-success-dark);
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
 }
 
 .message-warning {
-border: 1px solid var(--color-warning-dark);
-background: var(--color-warning-light);
-color: var(--color-warning-dark);
+    border: 1px solid var(--color-warning-dark);
+    background: var(--color-warning-light);
+    color: var(--color-warning-dark);
 }
 
 .message-alert {
-border: 1px solid var(--color-alert-dark);
-background: var(--color-alert-light);
-color: var(--color-alert-dark);
+    border: 1px solid var(--color-alert-dark);
+    background: var(--color-alert-light);
+    color: var(--color-alert-dark);
 }
 
 .message-info {
-border: 1px solid var(--color-info-dark);
-background: var(--color-info-light);
-color: var(--color-info-dark);
+    border: 1px solid var(--color-info-dark);
+    background: var(--color-info-light);
+    color: var(--color-info-dark);
 }
 
 .message-debug {
-border: 1px solid var(--color-debug-dark);
-background: var(--color-debug-light);
-color: var(--color-debug-dark);
+    border: 1px solid var(--color-debug-dark);
+    background: var(--color-debug-light);
+    color: var(--color-debug-dark);
 }
 
 .main-content {
@@ -339,6 +410,17 @@ color: var(--color-debug-dark);
 }
 
 .pagination .page-current {
-background: var(--color-primary-dark);
+    background: var(--color-primary-dark);
 }
 
+@media screen and (max-width:1200px) {
+    ul {
+        gap: 20%;
+    }
+}
+
+@media screen and (max-width:1050px) {
+    ul {
+        gap: 15%;
+    }
+}

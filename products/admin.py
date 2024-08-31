@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-from .models import Category, Product, Sale
+from . import models
 
 
-@admin.register(Category)
+@admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
 
-@admin.register(Product)
+@admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         "name",
@@ -20,7 +20,7 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(Sale)
+@admin.register(models.Sale)
 class SaleAdmin(admin.ModelAdmin):
     list_display = ("product_name", "product_price", "client_username")
 
@@ -41,3 +41,7 @@ class SaleAdmin(admin.ModelAdmin):
 
     client_username.admin_order_field = "client__username"
     client_username.short_description = "Client Username"
+
+
+admin.site.register(models.ItemCart)
+admin.site.register(models.Cart)

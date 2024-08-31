@@ -7,8 +7,11 @@
     <img class="item-img" src="{{ product.cover.url }}" alt="product image">
     {% endif %}
     <p class="product_price">$ {{ product.price }}</p>
-    <p class="title_description">{% translate 'Description' %}:</p>
-    <p>{{ product.description }}.</p>
+    
+    {% if is_detail_page %}
+        <p class="title_description">{% translate 'Description' %}:</p>
+        <p>{{ product.description }}.</p>
+    {% endif %}
     <p class="product_available">{% translate 'Available' %} - {{ product.quantity_stocked }} {% translate 'unit' %}</p>
     <div class="links-edit">
 
@@ -16,10 +19,6 @@
         {% if user|has_role:'Admin' %}
             <a class="product_edit" href="{% url 'update' id=product.id %}">{% translate 'Edit' %}</i></a>
             <a class="product_delete" href="{% url 'delete' id=product.id %}"><i class="fa-solid fa-trash"></i></a>
-        {% else %}
-            <div class="sale">
-                <a class="product_buy" href="{% url 'buy' id=product.id %}">{% translate 'Buy' %}</a>
-            </div>
         {% endif %}
     </div>
 </a>    
