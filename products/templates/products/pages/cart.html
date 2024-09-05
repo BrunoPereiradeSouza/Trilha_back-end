@@ -1,0 +1,26 @@
+{% extends 'global/base.html' %}
+
+
+{% block title %} Cart {% endblock title %}    
+
+
+{% block content %}
+        <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        {% for item in cart.itens.all %}
+            
+            <div class="cart-item">
+                <img src="{{ item.product.cover.url }}" alt="product_img">
+                <h2>{{ item.product.name }}</h2>
+                <form class="form-quantity-cart" action="{% url 'cart_update' id=item.id %}" method="post">
+                    {% csrf_token %}
+                    <label for="quantity-{{ item.id }}">Qtd:</label>
+                    <input id="quantity-{{ item.id }}" name="quantity" class="product-quantity-cart" type="number" min="1" value="{{ item.quantity }}">
+                    <button type="submit" class="btn-update-cart">Atualizar</button>
+                </form>
+                <p class="product-price-cart">$ {{ item.product.price }}</p>
+            </div>
+    
+        {% endfor %}
+        </div>
+{% endblock content %}

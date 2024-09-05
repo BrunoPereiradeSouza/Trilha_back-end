@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from products.models import Cart, ItemCart, Product, Sale
 
@@ -25,6 +25,7 @@ def product_buy(request, id):
     return redirect("index")
 
 
+@login_required(login_url="login")
 def add_to_cart(request, id):
     product = Product.objects.get(id=id)
     item, created = ItemCart.objects.get_or_create(product=product)
@@ -38,3 +39,23 @@ def add_to_cart(request, id):
     cart.itens.add(item)
     cart.save()
     return redirect("product", id=id)
+
+
+@login_required(login_url="login")
+def cart(request):
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+
+    return render(
+        request,
+        "products/pages/cart.html",
+        {
+            "cart": cart,
+        }
+        )
+
+def cart_update(request, id):
+    qtd = request.POST.get("quantity")
+    item = ItemCart.objects.get(id=id)
+    item.quantity = qtd
+    item.save()
+    return redirect("cart")
