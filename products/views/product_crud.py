@@ -43,9 +43,8 @@ def product_list(request):  # Lista os produtos
         billing = f"{billing:.2f}"
 
     # Retorna todos os produtos salvos no Banco de Dados
-    products = Product.objects.all().order_by('-id')
+    products = Product.objects.filter(quantity_stocked__gt=0).order_by("-id")
     page_obj, pagination = make_pagination(products, PER_PAGE, request)
-
 
     return render(
         request,

@@ -50,12 +50,19 @@ def cart(request):
         "products/pages/cart.html",
         {
             "cart": cart,
-        }
-        )
+        },
+    )
 
+
+@login_required(login_url="login")
 def cart_update(request, id):
-    qtd = request.POST.get("quantity")
+    qtd = int(request.POST.get("quantity"))
     item = ItemCart.objects.get(id=id)
-    item.quantity = qtd
-    item.save()
+    product = Product.objects.get(id=item.product.id)
+    if product.quantity_stocked >= qtd:
+        item.quantity = qtd
+        item.save()
+        messages.success(request, "Quantity has been updated")
+    else:
+        messages.error(request, "Quantity not available")
     return redirect("cart")
