@@ -29,7 +29,7 @@
                 value="{{ item.quantity }}">
             <button type="submit" class="btn-update-cart">Atualizar</button>
         </form>
-        <p class="product-price-cart">$ {{ item.product.price }}</p>
+        <p class="product-price-cart">$ {{ item.total_value }}</p>
     </div>
 
     {% endfor %}
