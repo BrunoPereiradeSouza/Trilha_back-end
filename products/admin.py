@@ -43,5 +43,11 @@ class SaleAdmin(admin.ModelAdmin):
     client_username.short_description = "Client Username"
 
 
-admin.site.register(models.ItemCart)
-admin.site.register(models.Cart)
+@admin.register(models.ItemCart)
+class ItemCartAdmin(admin.ModelAdmin):
+    list_display = ("product", "quantity", "cart")
+
+@admin.register(models.Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ("user", "created_at")
+

@@ -8,21 +8,37 @@
         </div>
 
         <div class="links-center">
-            <li class="li-links"><a class="nav-links" href="https://github.com/BrunoPereiradeSouza">{% translate 'about us'%}</a></li>
-        {% if user|has_role:'Admin' %}
+            <li class="li-links"><a class="nav-links" href="https://github.com/BrunoPereiradeSouza">{% translate 'about us'%}</a>
+            </li>
+            {% if user|has_role:'Admin' %}
             <li class="li-links"><a class="nav-links" href="{% url 'create' %}">{% translate 'new product' %}</a></li>
-        {% else %}
-            <li class="li-links"><a class="nav-links" href="{% url 'index' %}#content">{% translate 'products' %}</a></li>
-        {% endif %}
+            {% else %}
+            <li class="li-links"><a class="nav-links" href="{% url 'index' %}#content">{% translate 'products' %}</a>
+            </li>
+            {% endif %}
         </div>
 
         <div class="links-acoount">
-        {% if user.is_authenticated %}
-            <li class="li-links"><a class="nav-links" href="{% url 'logout' %}">{% translate 'logout' %}</a></li>
-        {% else %}
-            <li class="li-links"><a class="nav-links register" href="{% url 'register' %}">{% translate 'register' %}</a></li>
-            <li class="li-links"><a class="nav-links" href="{% url 'login' %}">{% translate 'login' %}</a></li>
-        {% endif %}
+            {% if user.is_authenticated %}
+            <li class="li-links margin-right">
+            <a class="nav-links" href="{% url 'logout' %}">
+            {% translate 'logout' %}
+            </a>
+            </li>
+            <li class="li-links">
+                <a class="nav-links cart-icon" href="{% url 'cart' %}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </li>
+            {% else %}
+            <li class="li-links">
+                <a class="nav-links register" href="{% url 'register' %}">{% translate 'register'%}
+                </a>
+            </li>
+            <li class="li-links">
+                <a class="nav-links" href="{% url 'login' %}">{% translate 'login' %}</a>
+            </li>
+            {% endif %}
         </div>
     </ul>
 </div>

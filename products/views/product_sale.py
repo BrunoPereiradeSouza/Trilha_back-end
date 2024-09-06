@@ -27,29 +27,34 @@ def product_buy(request, id):
 
 @login_required(login_url="login")
 def add_to_cart(request, id):
+    cart, _ = Cart.objects.get_or_create(user=request.user)
     product = Product.objects.get(id=id)
-    item, created = ItemCart.objects.get_or_create(product=product)
+    item, created = ItemCart.objects.get_or_create(product=product, cart=cart)
     if created:
         item.quantity = 1
     else:
         item.quantity += 1
     item.save()
 
-    cart, _ = Cart.objects.get_or_create(user=request.user)
-    cart.itens.add(item)
-    cart.save()
+    messages.success(request, "added to Cart")
     return redirect("product", id=id)
 
 
 @login_required(login_url="login")
 def cart(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
-
+    itens = ItemCart.objects.filter(cart=cart)
+    subtotal = 0
+    for item in itens:
+        subtotal += ItemCart.total_value(item)
+    num_itens = len(itens)
     return render(
         request,
         "products/pages/cart.html",
         {
-            "cart": cart,
+            "itens": itens,
+            "subtotal": subtotal,
+            "num_itens": num_itens,
         },
     )
 
@@ -65,4 +70,12 @@ def cart_update(request, id):
         messages.success(request, "Quantity has been updated")
     else:
         messages.error(request, "Quantity not available")
+    return redirect("cart")
+
+
+@login_required(login_url="login")
+def remove_to_cart(request, id):
+    item = ItemCart.objects.get(id=id)
+    item.delete()
+    
     return redirect("cart")

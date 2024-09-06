@@ -1,6 +1,12 @@
 {% extends 'global/base.html' %}
 
 {% block loadpermissions %}{% load i18n %}{% endblock loadpermissions %}
+
+
+{% block message %}
+    {% include 'global/partials/messages.html' %}
+{% endblock message %}
+    
 {% block content %}
     <div class="item-detail">
         
@@ -11,7 +17,8 @@
                 <p>{{ product.description }}</p>
                 <h2>$ {{ product.price }}</h2>
                 <div class="buttons">
-                    <a class="product-btn color-add-cart" href="{% url 'add_to_cart' id=product.id %}">{% translate 'Add to cart' %}</a>
+                    <a class="product-btn color-add-cart"
+                     href="{% url 'add_to_cart' id=product.id %}">{% translate 'Add to cart' %}</a>
                     <a class="product-btn color-buy" href="{% url 'buy' id=product.id %}">{% translate 'Buy now' %}</a>
                 </div>
             </div>     

@@ -272,7 +272,7 @@ a {
 .cart-container {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    max-width: 90%;
     justify-content: left;
     gap: 2rem;
     background: var(--color-gray-0);
@@ -337,6 +337,15 @@ a {
     color: var(--color-gray-0);
 }
 
+.margin-right {
+    margin-right: 3rem;
+}
+
+.delete-icon {
+    color: rgb(245, 23, 23);
+    margin: 0.1rem 1rem 0 0;
+    font-size: 1.3rem;
+}
 
 /* end cart */
 
