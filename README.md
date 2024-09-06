@@ -2,7 +2,7 @@
 
 ## Este projeto foi desenvolvido durante a realização da Trilha Back-end do Nadic. 
 
-Uma loja fictícia que vende produtos genéricos atráves de um site. O usuário pode se registrar, fazer login e logout, além de comprar os produtos ofertados. O adminsitrador do site pode ver, criar, atualizar e deletar produtos. Além disso, ele verá o número de vendas e o faturamento total da loja.
+Uma loja fictícia que vende produtos genéricos atráves de um site. O usuário pode se registrar, fazer login e logout, adicionar produtos ao seu carrinho de compras, alterar a quantidade desses produtos, remover itens do carrinho, além de comprar os produtos ofertados. O adminsitrador do site pode ver, criar, atualizar e deletar produtos. Além disso, ele verá o número de vendas e o faturamento total da loja.
 
 ## Como utilizar o projeto
 
