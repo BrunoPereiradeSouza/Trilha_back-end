@@ -6,41 +6,42 @@
     
 
 {% block content %}
-  <div class="content-form">
-    <form class="row g-3" method="post" enctype="multipart/form-data">
+  <div class="content-form-register">
+    <form class="form-register" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-        <div class="col-md-6">
-            <label for="inputFirstName4" class="form-label">{% translate 'First Name' %}</label>
-            <p type="text" class="form-control" id="inputFirstName4">
-                {{ form.first_name }}
-            </p>
+      <h1 class="form-title">Register</h1>
+        <div class="register-col">
+            <label for="inputFirstName4" class="form-label">
+                {% translate 'First Name' %}
+            </label>
+            {{ form.first_name }}
         </div>
-        <div class="col-md-6">
-            <label for="inputLastName4" class="form-label">{% translate 'Last Name' %}</label>
-            <p type="text" class="form-control" id="inputLastName">
-                {{ form.last_name }}
-            </p>
+        <div class="register-col">
+            <label for="inputLastName4" class="form-label">
+                {% translate 'Last Name' %}
+            </label>
+            {{ form.last_name }}
         </div>
-        <div class="col-12">
-            <label for="inputUsername" class="form-label">{% translate 'Username' %}</label>
-            <p type="text" class="form-control" id="inputUsername">
-                {{ form.username}}
-            </p>
+        <div class="register-col">
+            <label for="inputUsername" class="form-label">
+                {% translate 'Username' %}
+            </label>
+            {{ form.username}}
         </div>
-        <div class="col-12">
+        <div class="register-col">
             <label for="inputemail" class="form-label">E-mail</label>
-            <p type="email" class="form-control" id="inputEmail">
-                {{ form.email }}
-            </p>
+            {{ form.email }}
         </div>
-        <div class="col-md-12">
+        <div class="register-col">
             <label for="inputPassword" class="form-label">{% translate 'Password' %}</label>
-            <p type="password" class="form-control" id="inputPassword">
-                {{ form.password }}
-            </p>
+            {{ form.password }}
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">{% translate 'Send' %}</button>
+        <div class="register-col">
+            <label for="inputPassword2" class="form-label">{% translate 'Confirm password' %}</label>
+            {{ form.password2 }}
+        </div>
+        <div class="register-col">
+            <button type="submit" class="btn btn-primary btn-form">{% translate 'Register' %}</button>
         </div>
     </form>
   </div>

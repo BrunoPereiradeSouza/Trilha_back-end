@@ -35,10 +35,12 @@
             </div>
 
             <div class="quantity-cart">
-                <label for="quantity-{{ item.id }}">Qtd:</label>
-                <input id="quantity-{{ item.id }}" name="quantity" class="product-quantity-cart" type="number" min="1"
-                    value="{{ item.quantity }}">
-                <a href="{% url 'cart_update' id=item.id %}" data-id="{{ item.id }}" class="btn-update-cart">Atualizar</a>
+                    <label for="quantity-{{ item.id }}">Qtd:</label>
+                    <input id="quantity-{{ item.id }}" name="quantity" class="product-quantity-cart" type="number" min="1"
+                        value="{{ item.quantity }}">
+                    <a href="{% url 'cart_update' id=item.id %}" class="btn btn-primary btn-update">
+                        Atualizar
+                    </a>
             </div>
 
             <p class="product-price-cart">$ {{ item.total_value }}</p>
@@ -62,31 +64,3 @@
 {% endif %}
     
 {% endblock content %}
-
-<script>
-    document.querySelectorAll('.btn-update-cart').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const itemId = this.dataset.id;
-            const input = document.querySelector(`#quantity-${itemId}`);
-            const quantity = input.value;
-
-            fetch(this.href, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRFToken': getCookie('csrftoken'),
-                },
-                body: new URLSearchParams({ quantity: quantity })
-            })
-            .then(response => {
-                if (response.ok) {
-                    location.reload(); 
-                } else {
-                    alert("Erro ao atualizar o carrinho.");
-                }
-            });
-        });
-    });
-</script>

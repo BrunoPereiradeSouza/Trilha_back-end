@@ -1,5 +1,5 @@
 /* Font */
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* vars */
 :root {
@@ -49,7 +49,7 @@
 }
 
 body {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 
@@ -412,20 +412,66 @@ a {
     color: white;
 }
 
-/* Form */
-.content-form {
-    width: 60%;
-    padding: 2rem;
+/* Forms */
+.content-form-register {
+    width: 50%;
+    padding: 4rem;
+    margin-bottom: 3rem;
     border-radius: 5px;
-    background: rgb(223, 220, 220);
+    background: rgb(249, 247, 247);
+    text-align: left;
+}
+
+.form-register {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .content-form-login {
     width: 40%;
-    margin: 10rem 0;
-    padding: 2rem;
+    padding: 4rem;
+    margin-bottom: 3rem;
     border-radius: 5px;
-    background: rgb(223, 220, 220);
+    background: rgb(249, 247, 247);
+    text-align: left;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-title {
+    font-size: 1.5rem;
+}
+
+.btn-form {
+    padding: 0.4rem 2rem;
+}
+
+.input-border {
+    border: 1px solid rgb(200, 199, 199);
+}
+
+.content-form-product {
+    width: 70%;
+    text-align: left;
+    padding: 4rem;
+    background: rgb(249, 247, 247);
+}
+
+.form-product {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.btn-update {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
 }
 
 

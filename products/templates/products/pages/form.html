@@ -7,47 +7,42 @@
     
 
 {% block content %}
-  <div class="content-form">
-    <form class="row g-3" method="post" enctype="multipart/form-data">
+  <div class="content-form-product">
+    <form class="form-product" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-        <div class="col-md-6">
-            <label for="inputName4" class="form-label">{% trans 'Name' context "form label"%}</label>
-            <p type="text" class="form-control" id="inputName4">
-                {{ form.name }}
-            </p>
+      <h1 class="form-title">Create a new product</h1>
+        <div class="product-col">
+            <label for="inputName4" class="form-label">
+                {% trans 'Name' context "form label"%}
+            </label>
+            {{ form.name }}
         </div>
-        <div class="col-md-6">
+        <div class="product-col">
             <label for="inputDescription4" class="form-label">{% translate 'Price' %} $</label>
-            <p type="number" class="form-control" id="inputPrice">
-                {{ form.price }}
-            </p>
+            {{ form.price }}
         </div>
-        <div class="col-12">
-            <label for="inputDescription" class="form-label">{% translate 'Description' %}</label>
-            <p type="text" class="form-control" id="inputDescription">
-                {{ form.description}}
-            </p>
+        <div class="product-col">
+            <label for="inputDescription" class="form-label">
+                {% translate 'Description' %}
+            </label>
+            {{ form.description}}
         </div>
-        <div class="col-12">
-            <label for="inputQuantityStocked" class="form-label">{% translate 'Quantity Stocked' %}</label>
-            <p type="number" class="form-control" id="inputQuantityStocked">
-                {{ form.quantity_stocked }}
-            </p>
+        <div class="product-col">
+            <label for="inputQuantityStocked" class="form-label">
+                {% translate 'Quantity Stocked' %}
+            </label>
+            {{ form.quantity_stocked }}
         </div>
-        <div class="col-md-6">
+        <div class="product-col">
             <label for="inputCategory" class="form-label">{% translate 'Category' %}</label>
-            <p type="select" class="form-control" id="inputSelect">
-                {{ form.category }}
-            </p>
+            {{ form.category }}
         </div>
-        <div class="col-md-6">
+        <div class="product-col">
             <label for="inputCover" class="form-label">{% translate 'Cover' %}</label>
-            <p type="file" class="form-control" id="inputCover">
-                {{ form.cover }}
-            </p>
+            {{ form.cover }}
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">{% translate 'Send' %}</button>
+        <div class="product-col">
+            <button type="submit" class="btn btn-primary btn-form">{% translate 'Create' %}</button>
         </div>
     </form>
   </div>

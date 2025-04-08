@@ -13,18 +13,19 @@
 
 {% block content %}
 <div class="content-form-login">
-    <form class="row g-3" enctype="multipart/form-data" method="POST" action="{% url 'login' %}">
+    <form class="form-login" enctype="multipart/form-data" method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        <div class="col-md-12">
+        <h1 class="form-title">Login</h1>
+        <div class="login-col">
           <label for="inputUsername" class="form-label">{% translate 'Username' %}</label>
-          <input type="text" class="form-control" id="inputUsername" name="username">
+          <input type="text" class="form-control input-border" id="inputUsername" name="username">
         </div>
-        <div class="col-md-12">
+        <div class="login-col">
           <label for="inputPassword4" class="form-label">{% translate 'Password' %}</label>
-          <input type="password" class="form-control" id="inputPassword4" name="password">
+          <input type="password" class="form-control input-border" id="inputPassword4" name="password">
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">{% translate 'Send' %}</button>
+        <div class="login-col">
+            <button type="submit" class="btn btn-primary btn-form">{% translate 'login' %}</button>
         </div>
     </form>
 </div>
