@@ -1,8 +1,10 @@
 from django import forms
-from .models import Product
 from django.contrib.auth.models import User
-from products.validators import UserValidator
 from django.core.exceptions import ValidationError
+
+from products.validators import UserValidator
+
+from .models import Product
 
 
 # Form para criar e editar Produtos.
@@ -18,12 +20,24 @@ class ProductForm(forms.ModelForm):
             "cover",
         ]
         widgets = {
-            "name": forms.TextInput(attrs={"class": "form-control"}),
-            "description": forms.Textarea(attrs={"class": "form-control"}),
-            "price": forms.NumberInput(attrs={"class": "form-control"}),
-            "category": forms.Select(attrs={"class": "form-control"}),
-            "quantity_stocked": forms.NumberInput(attrs={"class": "form-control"}),
-            "cover": forms.FileInput(attrs={"class": "form-control"}),
+            "name": forms.TextInput(
+                attrs={"class": "form-control"}
+            ),
+            "description": forms.Textarea(
+                attrs={"class": "form-control"}
+            ),
+            "price": forms.NumberInput(
+                attrs={"class": "form-control"}
+            ),
+            "category": forms.Select(
+                attrs={"class": "form-control"}
+            ),
+            "quantity_stocked": forms.NumberInput(
+                attrs={"class": "form-control"}
+            ),
+            "cover": forms.FileInput(
+                attrs={"class": "form-control"}
+            ),
         }
 
 

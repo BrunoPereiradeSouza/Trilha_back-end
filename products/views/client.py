@@ -10,32 +10,32 @@ from products.forms import UserForm
 PER_PAGE = 12
 
 
-def client_register(request):  # Registra um Usuário
+def client_register(request):
     if request.method == "GET":
         form = UserForm()
+
     elif request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
             # Obtem os dados enviados no form
-            first_name = form.data.get("first_name")
-            last_name = form.data.get("last_name")
-            username = form.data.get("username")
-            email = form.data.get("email")
-            password = form.data.get("password")
+            data = form.cleaned_data
 
-            # Registra o Usuário atribuindo o mesmo ao grupo 'Client' criado com rolepermissions.
+            # Atribui o usuário ao grupo 'client'
             user = User.objects.create_user(
-                first_name=first_name,
-                last_name=last_name,
-                username=username,
-                password=password,
-                email=email,
-            )
-            assign_role(user, "client")
-            user.save()
-            form = UserForm()
-            messages.success(request, "Create user was sucessfull")
-            return redirect("login")
+                first_name=data["first_name"],
+                last_name=data["last_name"],
+                username=data["username"],
+                email=data["email"],
+                password=data["password"],
+        )
+
+        assign_role(user, "client")
+        form = UserForm()
+        messages.success(
+            request, 
+            "Create user was sucessfull"
+        )
+        return redirect("login")
 
     return render(
         request,
@@ -46,29 +46,42 @@ def client_register(request):  # Registra um Usuário
     )
 
 
-def client_login(request):  # Realiza o login de um Usuário no site.
+def client_login(request): 
+
     if request.method == "POST":
         # Obtem os dados enviados pelo Usuário
         username = request.POST.get("username")
         password = request.POST.get("password")
 
         # Tenta autenticar o Usuário (Se não conseguir, retorna None)
-        user = authenticate(username=username, password=password)
+        user = authenticate(
+            username=username, 
+            password=password
+        )
 
         if user:
             # Realiza o login do Usuário já autenticado.
             login(request, user)
-            messages.success(request, "Sucessfully login!")
+            messages.success(
+                request, 
+                "Sucessfully login!"
+            )
             return redirect("index")
         else:
-            messages.error(request, "Invalid User or Password!")
+            messages.error(
+                request, 
+                "Invalid User or Password!"
+            )
             return redirect("login")
-    else:
-        return render(request, "products/pages/login.html")
+
+    return render(
+        request, 
+        "products/pages/login.html"
+    )
 
 
 @login_required(login_url="login")
-def client_logout(request):  # Realiza o Logout do Usuário logado no site.
+def client_logout(request): 
     logout(request)
     messages.success(request, "you are logged out")
     return redirect("login")

@@ -1,6 +1,10 @@
-{% block loadings %}{% endblock loadings %}
+{% block loadings %}
+    {% load i18n %}
+{% endblock loadings %}
+
 <!DOCTYPE html>
-<html lang="{{ html_language }}">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 
 {% include 'global/partials/head.html' %}
 
@@ -11,14 +15,17 @@
     {% block message %}{% endblock message %}
 
     {% block billing %}{% endblock billing %}
-        
+
     <div id="content">
         {% block content %}{% endblock content %}
     </div>
-    
+
     {% include 'global/partials/pagination.html' %}
 
     {% include 'global/partials/footer.html' %}
+
+
+    {% block scripts %}{% endblock scripts %}
 
 </body>
 

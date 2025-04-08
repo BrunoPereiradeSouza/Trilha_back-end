@@ -24,7 +24,6 @@ def product_buy(request, id):
     messages.success(request, "Purchase was sucessfull")
     return redirect("index")
 
-
 @login_required(login_url="login")
 def add_to_cart(request, id):
     cart, _ = Cart.objects.get_or_create(user=request.user)
@@ -61,9 +60,12 @@ def cart(request):
 
 @login_required(login_url="login")
 def cart_update(request, id):
-    qtd = int(request.POST.get("quantity"))
     item = ItemCart.objects.get(id=id)
     product = Product.objects.get(id=item.product.id)
+ 
+    qtd = request.GET.get("quantity")
+    print(qtd)
+
     if product.quantity_stocked >= qtd:
         item.quantity = qtd
         item.save()
@@ -77,5 +79,36 @@ def cart_update(request, id):
 def remove_to_cart(request, id):
     item = ItemCart.objects.get(id=id)
     item.delete()
-    
+    messages.success(request, "item was deleted")
     return redirect("cart")
+
+
+def cart_buy(request):
+    selected_itens = request.POST.getlist('products')
+
+    items_to_buy = ItemCart.objects.filter(
+        cart__user=request.user,
+        product_id__in=selected_itens,
+        )
+
+    if len(items_to_buy) > 0:
+        for item in items_to_buy:
+            item.product.quantity_stocked -= item.quantity
+
+            # Registra a venda
+            sale = Sale.objects.create(
+                product=item.product,
+                client=request.user,
+            )
+            sale.save()
+            item.delete()
+        messages.success(
+            request, 
+            'Purchase has been successful'
+        )
+    else:
+        messages.warning(
+            request, 
+            'you must select items to purchase'
+        )
+    return redirect('cart')

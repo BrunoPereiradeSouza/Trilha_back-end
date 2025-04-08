@@ -1,4 +1,3 @@
-from products import views
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import (
@@ -7,21 +6,40 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+from products import views
 
 # Cria um router
 product_api_router = SimpleRouter()
 
 # Registra o router
-product_api_router.register("products", views.ProductApiViewSet)
+product_api_router.register(
+    "products", views.ProductApiViewSet
+)
 
 urlpatterns = [
     path(
-        "client/register/", views.UserApiRegister.as_view(), name="client_api_register",
+        "client/register/", 
+        views.UserApiRegister.as_view(), name="client_api_register",
     ),
-    path('billing/', views.BillingApiView, name='billing'),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path(
+        'billing/', 
+        views.BillingApiView, 
+        name='billing'
+    ),
+    path(
+        'token/', 
+        TokenObtainPairView.as_view(), name='token_obtain_pair'
+    ),
+    path(
+        'token/refresh/', 
+        TokenRefreshView.as_view(), 
+        name='token_refresh'
+    ),
+    path(
+        'token/verify/', 
+        TokenVerifyView.as_view(), 
+        name='token_verify'
+    ),
 ]
 
 # Adiciona o router nas urlpatterns

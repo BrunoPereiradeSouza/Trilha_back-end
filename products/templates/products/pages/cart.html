@@ -1,6 +1,13 @@
 {% extends 'global/base.html' %}
 
 
+{% block loadings %}
+    {% load static %}
+{% endblock loadings %}
+    
+
+{% block loadpermissions %}{% load i18n %}{% endblock loadpermissions %}
+
 {% block title %} Cart {% endblock title %}
 
 
@@ -8,34 +15,78 @@
 {% include 'global/partials/messages.html' %}
 {% endblock message %}
 
-
 {% block content %}
-<div class="cart-container">
-    <h1>Shopping Cart</h1>
-    {% for item in itens %}
+{% if itens %}
+<form action="{% url 'cart_buy' %}" method="post" class="form-cart">
+{% csrf_token %}
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>    
+        {% for item in itens %}
 
-    <div class="cart-item">
-        <img src="{{ item.product.cover.url }}" alt="product_img">
-        <div class="cart-middle-content">
-            <h2>{{ item.product.name }}</h2>
-            <p class="product_available left">
-                Available - {{ item.product.quantity_stocked }}
-            </p>
+        <div class="cart-item">
+            <input type="checkbox" name="products" value="{{ item.product.id }}">
+            <img src="{{ item.product.cover.url }}" alt="product_img">
+
+            <div class="cart-middle-content">
+                <h2>{{ item.product.name }}</h2>
+                <p class="product_available left">
+                    Available - {{ item.product.quantity_stocked }}
+                </p>
+            </div>
+
+            <div class="quantity-cart">
+                <label for="quantity-{{ item.id }}">Qtd:</label>
+                <input id="quantity-{{ item.id }}" name="quantity" class="product-quantity-cart" type="number" min="1"
+                    value="{{ item.quantity }}">
+                <a href="{% url 'cart_update' id=item.id %}" data-id="{{ item.id }}" class="btn-update-cart">Atualizar</a>
+            </div>
+
+            <p class="product-price-cart">$ {{ item.total_value }}</p>
+            <a class="delete-icon" href="{% url 'remove_to_cart' id=item.id %}">
+            <i class="fa-solid fa-trash"></i>
+            </a>
         </div>
-        <form class="form-quantity-cart" action="{% url 'cart_update' id=item.id %}" method="post">
-            {% csrf_token %}
-            <label for="quantity-{{ item.id }}">Qtd:</label>
-            <input id="quantity-{{ item.id }}" name="quantity" class="product-quantity-cart" type="number" min="1"
-                value="{{ item.quantity }}">
-            <button type="submit" class="btn-update-cart">Atualizar</button>
-        </form>
-        <p class="product-price-cart">$ {{ item.total_value }}</p>
-        <a class="delete-icon" href="{% url 'remove_to_cart' id=item.id %}">
-        <i class="fa-solid fa-trash"></i>
-        </a>
-    </div>
 
-    {% endfor %}
-    <h3>Subtotal ({{ num_itens }} ite{{ num_itens|pluralize:"m,ns" }} ): $ {{ subtotal }}</h3>
-</div>
+        {% endfor %}
+        <div class="final-cart">
+            <h3>Subtotal ({{ num_itens }} ite{{ num_itens|pluralize:"m,ns" }} ): $ {{ subtotal }}
+            </h3>
+            <button class="product-btn-cart color-buy ">
+            {% translate 'Buy now' %}
+            </button>
+        </div>
+    </div>
+</form>
+{% else %}
+<h1>There's no items in the Cart</h1>
+{% endif %}
+    
 {% endblock content %}
+
+<script>
+    document.querySelectorAll('.btn-update-cart').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const itemId = this.dataset.id;
+            const input = document.querySelector(`#quantity-${itemId}`);
+            const quantity = input.value;
+
+            fetch(this.href, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: new URLSearchParams({ quantity: quantity })
+            })
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); 
+                } else {
+                    alert("Erro ao atualizar o carrinho.");
+                }
+            });
+        });
+    });
+</script>

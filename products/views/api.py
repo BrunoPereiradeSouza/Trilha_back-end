@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -24,10 +24,12 @@ class UserApiRegister(CreateAPIView):
 @permission_classes([IsAdminUser])
 def BillingApiView(request):
     sales = Sale.objects.all()
-    total_billing, sales_number = 0, 0
+    sales_number = sales.count()
+    total_billing = 0
+
     for sale in sales:
         total_billing += sale.product.price
-        sales_number += 1
+
     return Response({
         "Total Billing": total_billing,
         "Sales Number": sales_number,

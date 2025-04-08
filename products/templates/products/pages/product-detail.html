@@ -9,7 +9,6 @@
     
 {% block content %}
     <div class="item-detail">
-        
         {% if product.cover.url != "" %}
             <img src="{{ product.cover.url }}" alt="product_img">
             <div class="product-informations">
@@ -19,7 +18,8 @@
                 <div class="buttons">
                     <a class="product-btn color-add-cart"
                      href="{% url 'add_to_cart' id=product.id %}">{% translate 'Add to cart' %}</a>
-                    <a class="product-btn color-buy" href="{% url 'buy' id=product.id %}">{% translate 'Buy now' %}</a>
+                    <a class="product-btn color-buy" href="{% url 'buy' id=product.id %}">{% translate 'Buy now' %}
+                    </a>
                 </div>
             </div>     
         {% endif %}
